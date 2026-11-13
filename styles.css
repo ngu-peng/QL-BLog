@@ -1,0 +1,393 @@
+/* ============================================================
+   QL-BLog 样式表
+   清新简约的卡片流风格，无任何第三方依赖
+   ============================================================ */
+
+/* ---------- 设计变量（配色 / 圆角 / 阴影） ---------- */
+:root {
+  --primary: #1E88E5;        /* 主色 */
+  --primary-dark: #1565C0;   /* 主色加深（hover） */
+  --bg: #F0F4F8;             /* 页面背景 */
+  --card: #FFFFFF;           /* 卡片背景 */
+  --text-main: #1F2933;      /* 主文字 */
+  --text-sub: #6B7785;       /* 次要文字 */
+  --danger: #E53935;         /* 危险色（删除/清空） */
+  --danger-dark: #C62828;
+  --border: #E3EAF0;
+  --radius: 14px;
+  --shadow: 0 2px 10px rgba(31, 41, 51, 0.06);
+  --shadow-hover: 0 6px 18px rgba(30, 136, 229, 0.12);
+}
+
+/* ---------- 全局 ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: linear-gradient(180deg, #F0F4F8 0%, #E8EFF6 100%);
+  color: var(--text-main);
+  min-height: 100vh;
+  font-size: 14px;
+}
+
+.app {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+/* ---------- 通用卡片 ---------- */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+
+/* ---------- 区块 1：顶部标题栏 ---------- */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(30, 136, 229, 0.35);
+  transition: transform 0.25s ease;
+}
+
+.brand:hover .logo {
+  transform: rotate(-8deg) scale(1.05);
+}
+
+.brand-name {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.badge {
+  background: var(--card);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+/* ---------- 区块 2：发布区 ---------- */
+.composer {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: box-shadow 0.3s ease;
+}
+
+.composer:focus-within {
+  box-shadow: var(--shadow-hover);
+}
+
+.composer-title {
+  border: none;
+  border-bottom: 1px solid var(--border);
+  padding: 6px 2px 10px;
+  font-size: 17px;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--text-main);
+  outline: none;
+  background: transparent;
+}
+
+.composer-title::placeholder {
+  font-weight: 400;
+  color: var(--text-sub);
+}
+
+.composer-content {
+  border: none;
+  resize: vertical;
+  min-height: 90px;
+  font-size: 14px;
+  line-height: 1.7;
+  font-family: inherit;
+  color: var(--text-main);
+  outline: none;
+  background: transparent;
+}
+
+.composer-content::placeholder {
+  color: var(--text-sub);
+}
+
+.composer-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.char-count {
+  font-size: 12px;
+  color: var(--text-sub);
+}
+
+/* ---------- 通用按钮 ---------- */
+.btn {
+  border: none;
+  border-radius: 10px;
+  padding: 9px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(30, 136, 229, 0.3);
+}
+
+.btn-primary:hover:not(:disabled) {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.btn-primary:disabled {
+  background: #B0BEC5;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.btn-danger {
+  background: transparent;
+  color: var(--danger);
+  border: 1px solid var(--danger);
+}
+
+.btn-danger:hover {
+  background: var(--danger);
+  color: #fff;
+}
+
+/* ---------- 区块 3：日志卡片流 ---------- */
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.post-card {
+  animation: fade-in-up 0.35s ease both;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.post-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+.post-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.post-title {
+  font-size: 17px;
+  font-weight: 600;
+  word-break: break-all;
+}
+
+.post-title.no-title {
+  color: var(--text-sub);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.post-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.post-actions button {
+  border: none;
+  background: none;
+  font-size: 12px;
+  color: var(--text-sub);
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.post-actions button:hover {
+  background: #EEF3F8;
+  color: var(--primary);
+}
+
+.post-actions button.del:hover {
+  color: var(--danger);
+  background: #FDECEC;
+}
+
+.post-content {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  word-break: break-all;
+  color: var(--text-main);
+}
+
+.post-meta {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--text-sub);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.post-meta .dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #B0BEC5;
+}
+
+/* 编辑态：卡片内出现的编辑框 */
+.edit-area {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.edit-area textarea {
+  width: 100%;
+  border: 1px solid var(--primary);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  line-height: 1.7;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 90px;
+  outline: none;
+  color: var(--text-main);
+  background: #F7FAFD;
+}
+
+.edit-area .edit-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.btn-sm {
+  padding: 7px 14px;
+  font-size: 13px;
+}
+
+.btn-ghost {
+  background: #EEF3F8;
+  color: var(--text-sub);
+}
+
+.btn-ghost:hover {
+  background: #E1EAF2;
+}
+
+/* ---------- 空状态 ---------- */
+.empty {
+  text-align: center;
+  padding: 56px 20px;
+  color: var(--text-sub);
+  animation: fade-in-up 0.35s ease both;
+}
+
+.empty .empty-icon {
+  font-size: 42px;
+  margin-bottom: 12px;
+  opacity: 0.7;
+}
+
+.empty p {
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* ---------- 区块 4：底部操作栏 ---------- */
+.footer {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.copyright {
+  font-size: 12px;
+  color: #B0BEC5;
+}
+
+/* ---------- 动画 ---------- */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- 移动端适配 ---------- */
+@media (max-width: 600px) {
+  .app {
+    padding: 16px 12px 40px;
+  }
+
+  .brand-name {
+    font-size: 20px;
+  }
+
+  .post-title {
+    font-size: 16px;
+  }
+}
