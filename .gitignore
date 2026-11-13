@@ -1,7 +1,5 @@
 # CodeBuddy 内部文件
 .codebuddy/
-.agents/
-skills-lock.json
 
 # 系统文件
 Thumbs.db
