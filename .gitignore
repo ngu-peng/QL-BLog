@@ -1,0 +1,6 @@
+# CodeBuddy 内部文件
+.codebuddy/
+
+# 系统文件
+Thumbs.db
+.DS_Store
