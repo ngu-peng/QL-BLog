@@ -1,3 +1,10 @@
+# 依赖与构建产物
+node_modules/
+dist/
+
+# 旧版原生实现备份（已被 Vue 版本取代）
+node_modules.old/
+
 # CodeBuddy 内部文件
 .codebuddy/
 
